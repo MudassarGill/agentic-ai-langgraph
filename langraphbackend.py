@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_core.prompts import PromptTemplate
 from typing import TypedDict,Annotated
-from langchain_core.messages import BaseMessage,HumanMessage,SystemMessage,AIMessage,
+from langchain_core.messages import BaseMessage,HumanMessage,SystemMessage,AIMessage
 from langgraph.graph.message import add_messages
 
 load_dotenv()
@@ -29,9 +29,23 @@ You are a helpful assistant.
 """
 )
 
+def chatbot_node(state:Chatbot) -> Chatbot:
+    messages=state["messages"]
+    response=chat_model.invoke(messages)
+    return {"messages":[response]}
 
 workflow=StateGraph(Chatbot)
-workflow.add_node("chatbot",)
+workflow.add_node("chatbot",chatbot_node)
+workflow.add_edge(START,"chatbot")
+workflow.add_edge("chatbot",END)
+
+app=workflow.compile()
+
+initial_state={
+    'messages':[HumanMessage(content='What is the capital of France?')]
+}
+
+app.invoke(initial_state)
 
 
 
