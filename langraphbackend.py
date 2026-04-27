@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_core.prompts import PromptTemplate
 from typing import TypedDict,Annotated
-from langchain_core.messages import BaseMessage,HumanMessage,SystemMessage,AIMessage
+from langchain_core.messages import BaseMessage,HumanMessage,SystemMessage,AIMessage,
+from langgraph.graph.message import add_messages
 
 load_dotenv()
 
@@ -13,6 +14,26 @@ chat_model=ChatHuggingFace(llm=llm)
 
 
 
-#Here we define the graph
+#Here we define the schema
 
-graph=StateGraph(TypedDict):
+class Chatbot(TypedDict):
+    messages:Annotated[list[BaseMessage],add_messages]
+
+prompt=PromptTemplate(
+    input_variables=["messages"],
+    template="""
+You are a helpful assistant.
+
+{messages}
+
+"""
+)
+
+
+workflow=StateGraph(Chatbot)
+workflow.add_node("chatbot",)
+
+
+
+
+    
