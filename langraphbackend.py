@@ -5,49 +5,17 @@ from langchain_core.prompts import PromptTemplate
 from typing import TypedDict,Annotated
 from langchain_core.messages import BaseMessage,HumanMessage,SystemMessage,AIMessage
 from langgraph.graph.message import add_messages
-
+from langchain_openai import ChatOpenAI
+import os
 load_dotenv()
 
-llm=HuggingFaceEndpoint(repo_id="HuggingFaceH4/zephyr-7b-beta",task="text-generation",max_new_tokens=500,temperature=0.1)
-
-chat_model=ChatHuggingFace(llm=llm) 
 
 
-
-#Here we define the schema
-
-class Chatbot(TypedDict):
-    messages:Annotated[list[BaseMessage],add_messages]
-
-prompt=PromptTemplate(
-    input_variables=["messages"],
-    template="""
-You are a helpful assistant.
-
-{messages}
-
-"""
+llm = ChatOpenAI(
+    api_key="YOUR_GROK_API_KEY",
+    base_url="https://api.x.ai/v1",   # Grok endpoint
+    model="grok-1"
 )
 
-def chatbot_node(state:Chatbot) -> Chatbot:
-    messages=state["messages"]
-    response=chat_model.invoke(messages)
-    return {"messages":[response]}
-
-workflow=StateGraph(Chatbot)
-workflow.add_node("chatbot",chatbot_node)
-workflow.add_edge(START,"chatbot")
-workflow.add_edge("chatbot",END)
-
-app=workflow.compile()
-
-initial_state={
-    'messages':[HumanMessage(content='What is the capital of France?')]
-}
-
-app.invoke(initial_state)
-
-
-
-
-    
+response = llm.invoke("Hello, how are you?")
+print(response.content)
