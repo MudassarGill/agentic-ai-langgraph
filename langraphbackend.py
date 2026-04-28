@@ -5,6 +5,17 @@ from langchain_core.prompts import PromptTemplate
 from typing import TypedDict,Annotated
 from langchain_core.messages import BaseMessage,HumanMessage,SystemMessage,AIMessage
 from langgraph.graph.message import add_messages
+import sqlite3
+
+database="""create table thread_id(
+    thread_id int primary key auto_increment,
+    thread_title text
+)"""
+
+# we use sqlite3 to store the thread id and also the conversation
+
+conn=sqlite3.connect("chatbot.db")
+cursor=conn.cursor()
 
 load_dotenv()
 
