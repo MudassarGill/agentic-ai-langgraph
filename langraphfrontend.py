@@ -37,3 +37,4 @@ if prompt:=st.chat_input("You are a helpful assistant"):
             message_placeholder.markdown(full_response+"▌")
         message_placeholder.markdown(full_response)
     st.session_state.messages.append(AIMessage(content=full_response))
+
