@@ -36,4 +36,5 @@ streamlit run langraphfrontend.py
 
 ## Author
 
-*   [MudssarGill](https://github.com/MudssarGill)
+*   **GitHub:** [MudssarGill](https://github.com/MudssarGill)
+*   **LinkedIn:** [m-mudassar-885](https://www.linkedin.com/in/m-mudassar-885)
