@@ -15,6 +15,17 @@ database="""create table thread_id(
 
 # we use sqlite3 to store the thread id and also the conversation
 
+
+#add tool calcutor
+
+
+@tool
+def calculator(expression:str)->str:
+    """
+    This tool is used to calculate the value of an expression.
+    """
+    return eval(expression)
+
 conn=sqlite3.connect("chatbot.db")
 cursor=conn.cursor()
 

@@ -10,7 +10,7 @@ from langgraph.graph.message import add_messages
 from langgraph.checkpoint import MemorySaver
 
 
-checkpointer = InMemorySaver()
+checkpointer = MemorySaver()
 
 class State(TypedDict):
     messages:Annotated[list,add_messages]
@@ -40,4 +40,7 @@ if prompt:=st.chat_input("You are a helpful assistant"):
             message_placeholder.markdown(full_response+"▌")
         message_placeholder.markdown(full_response)
     st.session_state.messages.append(AIMessage(content=full_response))
+
+
+
 
