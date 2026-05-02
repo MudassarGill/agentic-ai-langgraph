@@ -8,7 +8,6 @@ from langgraph.graph.message import add_messages
 import sqlite3
 import os
 os.environ["LANGGRAPH_DEBUG"] = "true"
-``
 database="""create table thread_id(
     thread_id int primary key auto_increment,
     thread_title text
