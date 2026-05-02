@@ -6,7 +6,9 @@ from typing import TypedDict,Annotated
 from langchain_core.messages import BaseMessage,HumanMessage,SystemMessage,AIMessage
 from langgraph.graph.message import add_messages
 import sqlite3
-
+import os
+os.environ["LANGGRAPH_DEBUG"] = "true"
+``
 database="""create table thread_id(
     thread_id int primary key auto_increment,
     thread_title text
@@ -22,6 +24,7 @@ load_dotenv()
 llm=HuggingFaceEndpoint(repo_id="mistralai/Mistral-7B-Instruct-v0.2",task="text-generation",max_new_tokens=500,temperature=0.1)
 
 chat_model=ChatHuggingFace(llm=llm) 
+
 
 
 
