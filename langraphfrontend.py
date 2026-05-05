@@ -13,7 +13,7 @@ from langraphbackend import app
 # It handles displaying messages, streaming responses, and managing memory threads.
 # ==============================================================================
 
-st.set_page_config(page_title="AI Agentic Chatbot", page_icon="🤖")
+st.set_page_config(page_title="AI Agentic Chatbot", page_icon="")
 
 # --- Database Helper for Thread Management ---
 # LangGraph's SqliteSaver stores all checkpoints in 'checkpoints.sqlite'.
