@@ -67,7 +67,7 @@ with st.sidebar:
 # ==============================================================================
 # MAIN CHAT INTERFACE
 # ==============================================================================
-st.title("🤖 LangGraph Agent Chatbot")
+st.title("LangGraph Agent Chatbot")
 st.markdown("With long-term memory & tools (Web Search, Weather, Calculator, etc.)")
 
 # To display the chat history in the UI, we can fetch the current state from LangGraph.
