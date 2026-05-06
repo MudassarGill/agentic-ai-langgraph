@@ -2,6 +2,7 @@ import streamlit as st
 import sqlite3
 import uuid
 from langchain_core.messages import HumanMessage, AIMessage
+import os 
 
 # Import our compiled LangGraph app
 from langraphbackend import app
