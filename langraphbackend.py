@@ -93,8 +93,8 @@ def get_weather(city: str) -> str:
         return f"The current temperature in {city} is {temp}°C."
     except Exception as e:
         return f"Error fetching weather data: {str(e)}"
-    except Exception as e:
-        return f"Error fetching weather data: {str(e)}"
+   except Exception as e:
+    return f"please try again"
 
 # Built-in Langchain Tools
 # ------------------------
